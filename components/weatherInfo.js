@@ -2,6 +2,10 @@ import React from 'react';
 
 const WeatherInfo = ({ data }) => {
   const iconURL = `https://www.weatherbit.io/static/img/icons/${data.weather.icon}.png`;
+  let waktu;
+  if (typeof(data.timestampLocal) !== 'undefined') {
+    waktu = new Date(data.timestampLocal);
+  }
 
   return (
     <div className="box">
@@ -22,6 +26,9 @@ const WeatherInfo = ({ data }) => {
             </div>
 
             <div className="column">
+              {waktu &&
+                <div className="tag is-large">{waktu.toLocaleString()}</div>
+              }
               <p>Precipitation: {data.precip} mm/hr</p>
               <p>Humidity: {data.relativeHumidity}%</p>
               <p>Wind: {data.windSpd} m/s</p>
