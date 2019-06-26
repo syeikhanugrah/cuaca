@@ -1,8 +1,9 @@
 const webpack = require('webpack');
+const withSass = require('@zeit/next-sass');
 
 require('dotenv-safe').load();
 
-module.exports = {
+module.exports = withSass({
   webpack: config => {
     config.plugins.push(
       new webpack.DefinePlugin({
@@ -11,4 +12,4 @@ module.exports = {
     );
     return config
   }
-};
+});
